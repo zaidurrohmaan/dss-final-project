@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DSS Final Project</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table, th, td { border: 1px solid #000; border-collapse: collapse; padding: 8px; }
+    input { width: 60px; }
+    .matrix { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Sistem Pendukung Keputusan</h1>
+  <h2>Menentukan Provinsi Prioritas dalam Pembangunan Sarana dan Prasarana Pendidikan</h2>
+
+  <div id="analisisWrapper">
+    <label>Analisis: 
+      <select id="analisis">
+          <option value="00">Kustom</option>
+          <option value="01">Prioritas Pembangunan Gedung Sekolah Baru</option>
+          <option value="02">Prioritas Pembangunan Sarana Sanitasi</option>
+      </select>
+    </label>
+    <br><br>
+  </div>
+
+  <div id="jenjangWrapper">
+    <label>Jenjang Pendidikan: 
+        <select id="jenjangPendidikan">
+          <option value="SD">SD</option>
+          <option value="SMP">SMP</option>
+          <option value="SMA">SMA</option>
+          <option value="SMK">SMK</option>
+        </select>
+      </label>
+      <br><br>
+  </div>
+
+  <div id="kriteriaWrapper">
+    <h3>Pilih Kriteria</h3>
+    <form id="formKriteria">
+      <div>
+        <label>
+          <input type="checkbox" name="kriteria" value="C1" />
+          Kriteria 1 (C1)
+        </label>
+        Bobot: <input type="number" step="0.01" name="bobotC1" />
+        Tipe:
+        <select name="tipeC1">
+          <option value="benefit">Benefit</option>
+          <option value="cost">Cost</option>
+          <option value="match">Match</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" name="kriteria" value="C2" />
+          Kriteria 2 (C2)
+        </label>
+        Bobot: <input type="number" step="0.01" name="bobotC2" />
+        Tipe:
+        <select name="tipeC2">
+          <option value="benefit">Benefit</option>
+          <option value="cost">Cost</option>
+          <option value="match">Match</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>
+          <input type="checkbox" name="kriteria" value="C3" />
+          Kriteria 3 (C3)
+        </label>
+        Bobot: <input type="number" step="0.01" name="bobotC3" />
+        Tipe:
+        <select name="tipeC3">
+          <option value="benefit">Benefit</option>
+          <option value="cost">Cost</option>
+          <option value="match">Match</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <label>Jumlah Alternatif: <input type="number" id="altCount" value="3" /></label>
+  <label>Jumlah Kriteria: <input type="number" id="critCount" value="3" /></label>
+  <button onclick="generateForm()">Buat Tabel</button>
+
+  <div id="formArea"></div>
+
+  <button onclick="runTOPSIS()">Hitung TOPSIS</button>
+
+  <div class="matrix" id="resultArea"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
