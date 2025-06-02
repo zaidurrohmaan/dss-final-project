@@ -171,10 +171,13 @@ document.getElementById("jenjangPendidikan").addEventListener("change", function
 // Update form based on analysis type
   function updateJenjangForm(analisis) {
     const jenjang = document.getElementById("jenjangWrapper");
+    const daftarKriteria = document.getElementById("kriteriaWrapper");
     if (analisis === "00") {
-    jenjang.style.display = "none";
+      jenjang.style.display = "none";
+      daftarKriteria.style.display = "block";
     } else {
-    jenjang.style.display = "block";
+      jenjang.style.display = "block";
+      daftarKriteria.style.display = "none";
     }
   }
   
@@ -226,7 +229,7 @@ function updateControlsState(checkbox) {
     
     // Reset values if unchecked
     if (!checkbox.checked) {
-      bobot.value = "0";
+      bobot.value = "1"; // Set to 1 instead of 0 for custom analysis
       tipe.value = "benefit";
     }
   } else {
@@ -239,23 +242,35 @@ function updateControlsState(checkbox) {
 // Function to validate weight input
 function validateWeight(input) {
   let value = parseInt(input.value, 10);
+  const analisis = document.getElementById("analisis").value;
+  const isCustom = analisis === "00";
   
-  // If input is empty or not a number, set to 0
+  // If input is empty or not a number, set to minimum value
   if (isNaN(value)) {
-    value = 0;
+    value = isCustom ? 1 : 0;
   }
   
-  // Only enforce range [0,100] for individual weight
-  if (value < 0) {
-    value = 0;
-  } else if (value > 100) {
-    value = 100;
+  // Enforce range based on analysis type
+  if (isCustom) {
+    // For custom analysis: range 1-100
+    if (value < 1) {
+      value = 1;
+    } else if (value > 100) {
+      value = 100;
+    }
+  } else {
+    // For predefined analysis: range 0-100
+    if (value < 0) {
+      value = 0;
+    } else if (value > 100) {
+      value = 100;
+    }
   }
   
   // Update input value
   input.value = value;
   
-  // Update displays without any total weight validation
+  // Update displays
   updateTotalBobot();
   updateSelectedKriteriaDisplay();
 }
@@ -312,7 +327,7 @@ function validateBobot() {
   });
   
   allBobots.forEach(bobot => {
-    bobot.value = "0";
+    bobot.value = isCustom ? "1" : "0"; // Set to 1 for custom analysis
     bobot.disabled = true;
   });
   
@@ -387,7 +402,13 @@ function runTOPSIS() {
       return value;
     })
   );
-  console.log('Matrix:', matrix[0]); // Log first row of matrix
+  
+  // Log the complete matrix with province names
+  console.log('Complete Matrix:');
+  console.log('Province\t\t' + selectedKriteria.map(k => k.id).join('\t'));
+  matrix.forEach((row, i) => {
+    console.log(`${dataset[i].name}\t\t${row.map(val => val.toFixed(4)).join('\t')}`);
+  });
 
   // Normalize matrix
   const normMatrix = matrix.map(row => [...row]);

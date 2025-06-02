@@ -10,6 +10,10 @@
   <h2>Sistem Pendukung Keputusan</h2>
   <h1>Menentukan Provinsi Prioritas dalam Pembangunan Sarana dan Prasarana Pendidikan</h1>
 
+  <p>
+    Lihat <a href="https://docs.google.com/spreadsheets/d/1PnWK6ZmO7BFsA6ouEu5P5eVGBp0oiSXwy9LIse4QBPg/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">dataset</a>.
+  </p>
+  
   <div id="analisisWrapper">
     <h3>Jenis Analisis</h3>
     <label>
@@ -33,9 +37,6 @@
 
   <div id="kriteriaWrapper">
     <h3>Daftar Kriteria</h3>
-    <p>
-      Lihat <a href="https://docs.google.com/spreadsheets/d/1PnWK6ZmO7BFsA6ouEu5P5eVGBp0oiSXwy9LIse4QBPg/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">dataset</a>.
-    </p>
     <div class="kriteria-box">
       <form id="formKriteria">
         <div class="kriteria-row">
@@ -48,8 +49,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC1" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC1" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -61,8 +62,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC2" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC2" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -74,8 +75,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC3" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC3" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -87,8 +88,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC4" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC4" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -100,8 +101,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC5" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC5" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -113,8 +114,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC6" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC6" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -126,8 +127,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC7" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC7" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -139,8 +140,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC8" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC8" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -152,8 +153,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC9" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC9" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -165,8 +166,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC10" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC10" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -178,8 +179,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC11" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC11" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -191,8 +192,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC12" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC12" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -204,8 +205,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC13" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC13" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -217,8 +218,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC14" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC14" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -230,8 +231,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC15" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC15" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -243,8 +244,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC16" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC16" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -256,8 +257,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC17" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC17" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -269,8 +270,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC18" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC18" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -282,8 +283,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC19" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC19" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -295,8 +296,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC20" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC20" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -308,8 +309,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC21" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC21" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -321,8 +322,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC22" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC22" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -334,8 +335,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC23" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC23" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -347,8 +348,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC24" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC24" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -360,8 +361,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC25" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC25" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -373,8 +374,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC26" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC26" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -386,8 +387,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC27" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC27" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -399,8 +400,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC28" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC28" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -412,8 +413,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC29" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC29" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -425,8 +426,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC30" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC30" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -438,8 +439,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC31" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC31" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -451,8 +452,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC32" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC32" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -464,8 +465,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC33" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC33" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -477,8 +478,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC34" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC34" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -490,8 +491,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC35" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC35" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -503,8 +504,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC36" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC36" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -516,8 +517,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC37" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC37" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -529,8 +530,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC38" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC38" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -542,8 +543,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC39" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC39" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -555,8 +556,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC40" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC40" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -568,8 +569,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC41" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC41" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -581,8 +582,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC42" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC42" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -594,8 +595,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC43" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC43" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -607,8 +608,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC44" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC44" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -620,8 +621,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC45" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC45" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -633,8 +634,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC46" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC46" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -646,8 +647,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC47" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC47" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -659,8 +660,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC48" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC48" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -672,8 +673,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC49" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC49" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -685,8 +686,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC50" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC50" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -698,8 +699,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC51" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC51" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -711,8 +712,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC52" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC52" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -724,8 +725,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC53" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC53" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -737,8 +738,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC54" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC54" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -750,8 +751,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC55" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC55" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -763,8 +764,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC56" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC56" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -776,8 +777,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC57" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC57" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -789,8 +790,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC58" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC58" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -802,8 +803,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC59" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC59" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
         <div class="kriteria-row">
           <label class="kriteria-label">
@@ -815,8 +816,8 @@
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
           </select>
-          <span>Bobot [0-100]:</span>
-          <input type="number" name="bobotC60" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+          <span>Bobot [1-100]:</span>
+          <input type="number" name="bobotC60" class="kriteria-bobot" step="1" min="1" max="100" value="1" oninput="validateWeight(this)" />
         </div>
       </form>
     </div>
