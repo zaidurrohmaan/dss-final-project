@@ -3,7 +3,7 @@ const analisisConfig = {
   "00": "Kustom",
   "01": "Prioritas Pembangunan Gedung Sekolah Baru",
   "02": "Prioritas Pembangunan Sarana Sanitasi",
-  "03": "Prioritas Peningkatan Kualitas Pengajaran"
+  "03": "Prioritas Peningkatan Kualitas Pembelajaran"
 };
 
 const kriteriaConfig = {
@@ -70,7 +70,7 @@ const kriteriaConfig = {
       "C60": { checked: true, bobot: 0.15, tipe: "benefit" }
     }
   },
-  "03": { // Prioritas Peningkatan Kualitas Pengajaran
+  "03": { // Prioritas Peningkatan Kualitas Pembelajaran
     "SD": {
       "C25": { checked: true, bobot: 0.4, tipe: "benefit" },  // Rasio Peserta Didik per Rombel - SD
       "C33": { checked: true, bobot: 0.4, tipe: "benefit" },  // Rasio Murid-Guru - SD
