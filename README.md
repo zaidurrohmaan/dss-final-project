@@ -92,6 +92,12 @@ This system assists in decision-making to determine provincial priorities in edu
 - Chart.js (for generating charts)
 - html2canvas (for chart rendering)
 
+## Team
+
+- Zaidurrohman (21/477632/PA/20678)
+- Maritza Zahra Setyawan (22/494378/PA/21274)                    
+- Aji Kusuma Putra (22/503701/PA/21657)
+
 ## License
 
 This repository is created for academic purposes.
