@@ -1,4 +1,11 @@
 // Configuration for different analysis types and education levels
+const analisisConfig = {
+  "00": "Kustom",
+  "01": "Prioritas Pembangunan Gedung Sekolah Baru",
+  "02": "Prioritas Pembangunan Sarana Sanitasi",
+  "03": "Prioritas Peningkatan Kualitas Pengajaran"
+};
+
 const kriteriaConfig = {
   "01": { // Prioritas Pembangunan Gedung Sekolah Baru
     "SD": {
@@ -63,7 +70,7 @@ const kriteriaConfig = {
       "C60": { checked: true, bobot: 0.15, tipe: "benefit" }
     }
   },
-  "03": { // Prioritas Peningkatan Kualitas Pendidikan
+  "03": { // Prioritas Peningkatan Kualitas Pengajaran
     "SD": {
       "C25": { checked: true, bobot: 0.4, tipe: "benefit" },  // Rasio Peserta Didik per Rombel - SD
       "C33": { checked: true, bobot: 0.4, tipe: "benefit" },  // Rasio Murid-Guru - SD
@@ -841,8 +848,25 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("analisis").dispatchEvent(new Event("change"));
 });
 
+// Function to populate analysis type select element
+function populateAnalisisSelect() {
+  const select = document.getElementById("analisis");
+  
+  // Clear existing options
+  select.innerHTML = '';
+  
+  // Add options from config
+  Object.entries(analisisConfig).forEach(([value, text]) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = text;
+    select.appendChild(option);
+  });
+}
+
 // Initialize form and load dataset on page load
 window.addEventListener("DOMContentLoaded", () => {
+  populateAnalisisSelect();
   document.getElementById("analisis").dispatchEvent(new Event("change"));
   loadDataset();
 });

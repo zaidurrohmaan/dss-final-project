@@ -137,18 +137,13 @@
   </style>
 </head>
 <body>
-  <h1>Sistem Pendukung Keputusan</h1>
-  <h2>Menentukan Provinsi Prioritas dalam Pembangunan Sarana dan Prasarana Pendidikan</h2>
+  <h2>Sistem Pendukung Keputusan</h2>
+  <h1>Menentukan Provinsi Prioritas dalam Pembangunan Sarana dan Prasarana Pendidikan</h1>
 
   <div id="analisisWrapper">
     <h3>Jenis Analisis</h3>
     <label>
-      <select id="analisis">
-        <option value="00">Kustom</option>
-        <option value="01">Prioritas Pembangunan Gedung Sekolah Baru</option>
-        <option value="02">Prioritas Pembangunan Sarana Sanitasi</option>
-        <option value="03">Prioritas Peningkatan Kualitas Pendidikan</option>
-      </select>
+      <select id="analisis"></select>
     </label>
     <br><br>
   </div>
@@ -182,7 +177,6 @@
           <select name="tipeC1" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC1" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -196,7 +190,6 @@
           <select name="tipeC2" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC2" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -210,7 +203,6 @@
           <select name="tipeC3" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC3" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -224,7 +216,6 @@
           <select name="tipeC4" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC4" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -238,7 +229,6 @@
           <select name="tipeC5" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC5" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -252,7 +242,6 @@
           <select name="tipeC6" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC6" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -266,7 +255,6 @@
           <select name="tipeC7" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC7" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -280,7 +268,6 @@
           <select name="tipeC8" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC8" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -294,7 +281,6 @@
           <select name="tipeC9" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC9" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -308,7 +294,6 @@
           <select name="tipeC10" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC10" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -322,7 +307,6 @@
           <select name="tipeC11" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC11" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -336,7 +320,6 @@
           <select name="tipeC12" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC12" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -350,7 +333,6 @@
           <select name="tipeC13" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC13" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -364,7 +346,6 @@
           <select name="tipeC14" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC14" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -378,7 +359,6 @@
           <select name="tipeC15" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC15" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -392,7 +372,6 @@
           <select name="tipeC16" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC16" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -406,7 +385,6 @@
           <select name="tipeC17" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC17" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -420,7 +398,6 @@
           <select name="tipeC18" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC18" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -434,7 +411,6 @@
           <select name="tipeC19" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC19" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -448,7 +424,6 @@
           <select name="tipeC20" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC20" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -462,7 +437,6 @@
           <select name="tipeC21" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC21" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -476,7 +450,6 @@
           <select name="tipeC22" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC22" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -490,7 +463,6 @@
           <select name="tipeC23" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC23" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -504,7 +476,6 @@
           <select name="tipeC24" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC24" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -518,7 +489,6 @@
           <select name="tipeC25" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC25" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -532,7 +502,6 @@
           <select name="tipeC26" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC26" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -546,7 +515,6 @@
           <select name="tipeC27" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC27" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -560,7 +528,6 @@
           <select name="tipeC28" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC28" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -574,7 +541,6 @@
           <select name="tipeC29" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC29" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -588,7 +554,6 @@
           <select name="tipeC30" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC30" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -602,7 +567,6 @@
           <select name="tipeC31" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC31" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -616,7 +580,6 @@
           <select name="tipeC32" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC32" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -630,7 +593,6 @@
           <select name="tipeC33" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC33" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -644,7 +606,6 @@
           <select name="tipeC34" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC34" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -658,7 +619,6 @@
           <select name="tipeC35" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC35" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -672,7 +632,6 @@
           <select name="tipeC36" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC36" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -686,7 +645,6 @@
           <select name="tipeC37" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC37" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -700,7 +658,6 @@
           <select name="tipeC38" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC38" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -714,7 +671,6 @@
           <select name="tipeC39" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC39" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -728,7 +684,6 @@
           <select name="tipeC40" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC40" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -742,7 +697,6 @@
           <select name="tipeC41" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC41" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -756,7 +710,6 @@
           <select name="tipeC42" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC42" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -770,7 +723,6 @@
           <select name="tipeC43" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC43" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -784,7 +736,6 @@
           <select name="tipeC44" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC44" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -798,7 +749,6 @@
           <select name="tipeC45" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC45" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -812,7 +762,6 @@
           <select name="tipeC46" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC46" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -826,7 +775,6 @@
           <select name="tipeC47" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC47" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -840,7 +788,6 @@
           <select name="tipeC48" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC48" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -854,7 +801,6 @@
           <select name="tipeC49" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC49" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -868,7 +814,6 @@
           <select name="tipeC50" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC50" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -882,7 +827,6 @@
           <select name="tipeC51" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC51" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -896,7 +840,6 @@
           <select name="tipeC52" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC52" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -910,7 +853,6 @@
           <select name="tipeC53" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC53" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -924,7 +866,6 @@
           <select name="tipeC54" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC54" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -938,7 +879,6 @@
           <select name="tipeC55" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC55" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -952,7 +892,6 @@
           <select name="tipeC56" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC56" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -966,7 +905,6 @@
           <select name="tipeC57" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC57" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -980,7 +918,6 @@
           <select name="tipeC58" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC58" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -994,7 +931,6 @@
           <select name="tipeC59" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC59" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
@@ -1008,7 +944,6 @@
           <select name="tipeC60" class="kriteria-select">
             <option value="benefit">Benefit</option>
             <option value="cost">Cost</option>
-            <option value="match">Match</option>
           </select>
           <span>Bobot [0-100]:</span>
           <input type="number" name="bobotC60" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
