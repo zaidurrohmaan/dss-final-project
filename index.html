@@ -24,8 +24,8 @@
       margin-top: 20px; 
     }
     .kriteria-box {
-      width: fit-content;
-      height: 500px;
+      width: 100%;
+      height: 250px;
       overflow-y: auto;
       border: 1px solid #ccc;
       padding: 16px;
@@ -41,16 +41,18 @@
       background-color: cornsilk;
       padding: 8px;
       border-radius: 4px;
+      gap: 10px;
     }
     .kriteria-label {
-      width: 550px;
-      flex-shrink: 0;
+      flex: 2;
+      min-width: 200px;
       word-wrap: break-word;
-      margin-right: 10px;
+    }
+    .kriteria-row span {
+      white-space: nowrap;
     }
     .kriteria-select {
       width: 120px;
-      margin-right: 10px;
     }
     .kriteria-bobot {
       width: 80px;
@@ -89,6 +91,49 @@
       font-weight: bold;
       color: #666;
     }
+    .selected-kriteria-box {
+      margin-top: 20px;
+      padding: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    .selected-kriteria-box h3 {
+      margin-bottom: 10px;
+    }
+    .selected-kriteria-box table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .selected-kriteria-box th,
+    .selected-kriteria-box td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    .selected-kriteria-box th {
+      background-color: #f2f2f2;
+    }
+    .selected-kriteria-box select,
+    .selected-kriteria-box input {
+      width: 100px;
+      padding: 4px;
+      margin: 0 4px;
+    }
+    .selected-kriteria-box button {
+      padding: 4px 8px;
+      margin: 0 4px;
+      background-color: #dc3545;
+    }
+    .selected-kriteria-box button:hover {
+      background-color: #c82333;
+    }
+    #kriteriaWrapper {
+      display: block;
+    }
+    #kriteriaWrapper.hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -102,6 +147,7 @@
         <option value="00">Kustom</option>
         <option value="01">Prioritas Pembangunan Gedung Sekolah Baru</option>
         <option value="02">Prioritas Pembangunan Sarana Sanitasi</option>
+        <option value="03">Prioritas Peningkatan Kualitas Pendidikan</option>
       </select>
     </label>
     <br><br>
@@ -120,733 +166,872 @@
     <br><br>
   </div>
 
-  <h3>Daftar Kriteria</h3>
-  <p>
-    Lihat <a href="https://docs.google.com/spreadsheets/d/1PnWK6ZmO7BFsA6ouEu5P5eVGBp0oiSXwy9LIse4QBPg/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">dataset</a>.
-  </p>
-  <div class="kriteria-box">
-    <form id="formKriteria">
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C1" />
-          <strong>C1</strong> - Jumlah SD - Negeri
-        </label>
-        <select class="kriteria-select" name="tipeC1">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC1" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C2" />
-          <strong>C2</strong> - Jumlah SD - Swasta
-        </label>
-        <select class="kriteria-select" name="tipeC2">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC2" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C3" />
-          <strong>C3</strong> - Jumlah SD - Total
-        </label>
-        <select class="kriteria-select" name="tipeC3">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC3" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C4" />
-          <strong>C4</strong> - Jumlah SMP - Negeri
-        </label>
-        <select class="kriteria-select" name="tipeC4">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC4" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C5" />
-          <strong>C5</strong> - Jumlah SMP - Swasta
-        </label>
-        <select class="kriteria-select" name="tipeC5">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC5" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C6" />
-          <strong>C6</strong> - Jumlah SMP - Total
-        </label>
-        <select class="kriteria-select" name="tipeC6">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC6" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C7" />
-          <strong>C7</strong> - Jumlah SMA - Negeri
-        </label>
-        <select class="kriteria-select" name="tipeC7">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC7" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C8" />
-          <strong>C8</strong> - Jumlah SMA - Swasta
-        </label>
-        <select class="kriteria-select" name="tipeC8">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC8" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C9" />
-          <strong>C9</strong> - Jumlah SMA - Total
-        </label>
-        <select class="kriteria-select" name="tipeC9">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC9" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C10" />
-          <strong>C10</strong> - Jumlah SMK - Negeri
-        </label>
-        <select class="kriteria-select" name="tipeC10">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC10" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C11" />
-          <strong>C11</strong> - Jumlah SMK - Swasta
-        </label>
-        <select class="kriteria-select" name="tipeC11">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC11" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C12" />
-          <strong>C12</strong> - Jumlah SMK - Total
-        </label>
-        <select class="kriteria-select" name="tipeC12">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC12" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C13" />
-          <strong>C13</strong> - Persentase Kondisi Ruang Kelas SD - Baik
-        </label>
-        <select class="kriteria-select" name="tipeC13">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC13" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C14" />
-          <strong>C14</strong> - Persentase Kondisi Ruang Kelas SD - Rusak Ringan
-        </label>
-        <select class="kriteria-select" name="tipeC14">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC14" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C15" />
-          <strong>C15</strong> - Persentase Kondisi Ruang Kelas SD - Rusak Berat
-        </label>
-        <select class="kriteria-select" name="tipeC15">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC15" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C16" />
-          <strong>C16</strong> - Persentase Kondisi Ruang Kelas SMP - Baik
-        </label>
-        <select class="kriteria-select" name="tipeC16">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC16" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C17" />
-          <strong>C17</strong> - Persentase Kondisi Ruang Kelas SMP - Rusak Ringan
-        </label>
-        <select class="kriteria-select" name="tipeC17">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC17" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C18" />
-          <strong>C18</strong> - Persentase Kondisi Ruang Kelas SMP - Rusak Berat
-        </label>
-        <select class="kriteria-select" name="tipeC18">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC18" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C19" />
-          <strong>C19</strong> - Persentase Kondisi Ruang Kelas SMA - Baik
-        </label>
-        <select class="kriteria-select" name="tipeC19">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC19" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C20" />
-          <strong>C20</strong> - Persentase Kondisi Ruang Kelas SMA - Rusak Ringan
-        </label>
-        <select class="kriteria-select" name="tipeC20">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC20" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C21" />
-          <strong>C21</strong> - Persentase Kondisi Ruang Kelas SMA - Rusak Berat
-        </label>
-        <select class="kriteria-select" name="tipeC21">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC21" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C22" />
-          <strong>C22</strong> - Persentase Kondisi Ruang Kelas SMK - Baik
-        </label>
-        <select class="kriteria-select" name="tipeC22">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC22" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C23" />
-          <strong>C23</strong> - Persentase Kondisi Ruang Kelas SMK - Rusak Ringan
-        </label>
-        <select class="kriteria-select" name="tipeC23">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC23" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C24" />
-          <strong>C24</strong> - Persentase Kondisi Ruang Kelas SMK - Rusak Berat
-        </label>
-        <select class="kriteria-select" name="tipeC24">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC24" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C25" />
-          <strong>C25</strong> - Rasio Peserta Didik per Rombel - SD
-        </label>
-        <select class="kriteria-select" name="tipeC25">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC25" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C26" />
-          <strong>C26</strong> - Rasio Peserta Didik per Rombel - SMP
-        </label>
-        <select class="kriteria-select" name="tipeC26">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC26" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C27" />
-          <strong>C27</strong> - Rasio Peserta Didik per Rombel - SMA
-        </label>
-        <select class="kriteria-select" name="tipeC27">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC27" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C28" />
-          <strong>C28</strong> - Rasio Peserta Didik per Rombel - SMK
-        </label>
-        <select class="kriteria-select" name="tipeC28">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC28" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C29" />
-          <strong>C29</strong> - Rasio Rombel per Kelas - SD
-        </label>
-        <select class="kriteria-select" name="tipeC29">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC29" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C30" />
-          <strong>C30</strong> - Rasio Rombel per Kelas - SMP
-        </label>
-        <select class="kriteria-select" name="tipeC30">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC30" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C31" />
-          <strong>C31</strong> - Rasio Rombel per Kelas - SMA
-        </label>
-        <select class="kriteria-select" name="tipeC31">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC31" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C32" />
-          <strong>C32</strong> - Rasio Rombel per Kelas - SMK
-        </label>
-        <select class="kriteria-select" name="tipeC32">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC32" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C33" />
-          <strong>C33</strong> - Rasio Rombel per Kelas - SD
-        </label>
-        <select class="kriteria-select" name="tipeC33">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC33" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C34" />
-          <strong>C34</strong> - Rasio Murid-Guru - SMP
-        </label>
-        <select class="kriteria-select" name="tipeC34">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC34" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C35" />
-          <strong>C35</strong> - Rasio Murid-Guru - SMA
-        </label>
-        <select class="kriteria-select" name="tipeC35">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC35" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C36" />
-          <strong>C36</strong> - Rasio Murid-Guru - SMK
-        </label>
-        <select class="kriteria-select" name="tipeC36">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC36" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C37" />
-          <strong>C37</strong> - Persentase Kecukupan Air (SD) - Cukup
-        </label>
-        <select class="kriteria-select" name="tipeC37">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC37" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C38" />
-          <strong>C38</strong> - Persentase Kecukupan Air (SD) - Kurang
-        </label>
-        <select class="kriteria-select" name="tipeC38">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC38" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C39" />
-          <strong>C39</strong> - Persentase Kecukupan Air (SD) - Tidak Ada
-        </label>
-        <select class="kriteria-select" name="tipeC39">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC39" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C40" />
-          <strong>C40</strong> - Persentase Kecukupan Air (SMP) - Cukup
-        </label>
-        <select class="kriteria-select" name="tipeC40">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC40" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C41" />
-          <strong>C41</strong> - Persentase Kecukupan Air (SMP) - Kurang
-        </label>
-        <select class="kriteria-select" name="tipeC41">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC41" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C42" />
-          <strong>C42</strong> - Persentase Kecukupan Air (SMP) - Tidak Ada
-        </label>
-        <select class="kriteria-select" name="tipeC42">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC42" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C43" />
-          <strong>C43</strong> - Persentase Kecukupan Air (SMA) - Cukup
-        </label>
-        <select class="kriteria-select" name="tipeC43">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC43" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C44" />
-          <strong>C44</strong> - Persentase Kecukupan Air (SMA) - Kurang
-        </label>
-        <select class="kriteria-select" name="tipeC44">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC44" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C45" />
-          <strong>C45</strong> - Persentase Kecukupan Air (SMA) - Tidak Ada
-        </label>
-        <select class="kriteria-select" name="tipeC45">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC45" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C46" />
-          <strong>C46</strong> - Persentase Kecukupan Air (SMK) - Cukup
-        </label>
-        <select class="kriteria-select" name="tipeC46">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC46" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C47" />
-          <strong>C47</strong> - Persentase Kecukupan Air (SMK) - Kurang
-        </label>
-        <select class="kriteria-select" name="tipeC47">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC47" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C48" />
-          <strong>C48</strong> - Persentase Kecukupan Air (SMK) - Tidak Ada
-        </label>
-        <select class="kriteria-select" name="tipeC48">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC48" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C49" />
-          <strong>C49</strong> - Persentase Ketersediaan Toilet Siswa (SD) - Terpisah
-        </label>
-        <select class="kriteria-select" name="tipeC49">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC49" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C50" />
-          <strong>C50</strong> - Persentase Ketersediaan Toilet Siswa (SD) - Bersama
-        </label>
-        <select class="kriteria-select" name="tipeC50">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC50" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C51" />
-          <strong>C51</strong> - Persentase Ketersediaan Toilet Siswa (SD) - Tidak Memiliki
-        </label>
-        <select class="kriteria-select" name="tipeC51">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC51" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C52" />
-          <strong>C52</strong> - Persentase Ketersediaan Toilet Siswa (SMP) - Terpisah
-        </label>
-        <select class="kriteria-select" name="tipeC52">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC52" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C53" />
-          <strong>C53</strong> - Persentase Ketersediaan Toilet Siswa (SMP) - Bersama
-        </label>
-        <select class="kriteria-select" name="tipeC53">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC53" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C54" />
-          <strong>C54</strong> - Persentase Ketersediaan Toilet Siswa (SMP) - Tidak Memiliki
-        </label>
-        <select class="kriteria-select" name="tipeC54">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC54" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C55" />
-          <strong>C55</strong> - Persentase Ketersediaan Toilet Siswa (SMA) - Terpisah
-        </label>
-        <select class="kriteria-select" name="tipeC55">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC55" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C56" />
-          <strong>C56</strong> - Persentase Ketersediaan Toilet Siswa (SMA) - Bersama
-        </label>
-        <select class="kriteria-select" name="tipeC56">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC56" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C57" />
-          <strong>C57</strong> - Persentase Ketersediaan Toilet Siswa (SMA) - Tidak Memiliki
-        </label>
-        <select class="kriteria-select" name="tipeC57">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC57" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C58" />
-          <strong>C58</strong> - Persentase Ketersediaan Toilet Siswa (SMK) - Terpisah
-        </label>
-        <select class="kriteria-select" name="tipeC58">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC58" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C59" />
-          <strong>C59</strong> - Persentase Ketersediaan Toilet Siswa (SMK) - Bersama
-        </label>
-        <select class="kriteria-select" name="tipeC59">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC59" />
-      </div>
-      <div class="kriteria-row">
-        <label class="kriteria-label">
-          <input type="checkbox" name="kriteria" value="C60" />
-          <strong>C60</strong> - Persentase Ketersediaan Toilet Siswa (SMK) - Tidak Memiliki
-        </label>
-        <select class="kriteria-select" name="tipeC60">
-          <option value="benefit">Benefit</option>
-          <option value="cost">Cost</option>
-          <option value="match">Match</option>
-        </select>
-        <input class="kriteria-bobot" type="number" step="0.01" name="bobotC60" />
-      </div>
-    </form>
+  <div id="kriteriaWrapper">
+    <h3>Daftar Kriteria</h3>
+    <p>
+      Lihat <a href="https://docs.google.com/spreadsheets/d/1PnWK6ZmO7BFsA6ouEu5P5eVGBp0oiSXwy9LIse4QBPg/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">dataset</a>.
+    </p>
+    <div class="kriteria-box">
+      <form id="formKriteria">
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C1" />
+            <strong>C1</strong> - Jumlah SD - Negeri
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC1" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC1" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C2" />
+            <strong>C2</strong> - Jumlah SD - Swasta
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC2" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC2" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C3" />
+            <strong>C3</strong> - Jumlah SD - Total
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC3" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC3" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C4" />
+            <strong>C4</strong> - Jumlah SMP - Negeri
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC4" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC4" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C5" />
+            <strong>C5</strong> - Jumlah SMP - Swasta
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC5" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC5" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C6" />
+            <strong>C6</strong> - Jumlah SMP - Total
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC6" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC6" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C7" />
+            <strong>C7</strong> - Jumlah SMA - Negeri
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC7" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC7" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C8" />
+            <strong>C8</strong> - Jumlah SMA - Swasta
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC8" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC8" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C9" />
+            <strong>C9</strong> - Jumlah SMA - Total
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC9" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC9" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C10" />
+            <strong>C10</strong> - Jumlah SMK - Negeri
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC10" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC10" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C11" />
+            <strong>C11</strong> - Jumlah SMK - Swasta
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC11" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC11" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C12" />
+            <strong>C12</strong> - Jumlah SMK - Total
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC12" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC12" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C13" />
+            <strong>C13</strong> - Persentase Kondisi Ruang Kelas SD - Baik
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC13" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC13" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C14" />
+            <strong>C14</strong> - Persentase Kondisi Ruang Kelas SD - Rusak Ringan
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC14" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC14" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C15" />
+            <strong>C15</strong> - Persentase Kondisi Ruang Kelas SD - Rusak Berat
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC15" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC15" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C16" />
+            <strong>C16</strong> - Persentase Kondisi Ruang Kelas SMP - Baik
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC16" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC16" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C17" />
+            <strong>C17</strong> - Persentase Kondisi Ruang Kelas SMP - Rusak Ringan
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC17" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC17" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C18" />
+            <strong>C18</strong> - Persentase Kondisi Ruang Kelas SMP - Rusak Berat
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC18" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC18" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C19" />
+            <strong>C19</strong> - Persentase Kondisi Ruang Kelas SMA - Baik
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC19" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC19" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C20" />
+            <strong>C20</strong> - Persentase Kondisi Ruang Kelas SMA - Rusak Ringan
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC20" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC20" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C21" />
+            <strong>C21</strong> - Persentase Kondisi Ruang Kelas SMA - Rusak Berat
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC21" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC21" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C22" />
+            <strong>C22</strong> - Persentase Kondisi Ruang Kelas SMK - Baik
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC22" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC22" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C23" />
+            <strong>C23</strong> - Persentase Kondisi Ruang Kelas SMK - Rusak Ringan
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC23" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC23" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C24" />
+            <strong>C24</strong> - Persentase Kondisi Ruang Kelas SMK - Rusak Berat
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC24" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC24" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C25" />
+            <strong>C25</strong> - Rasio Peserta Didik per Rombel - SD
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC25" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC25" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C26" />
+            <strong>C26</strong> - Rasio Peserta Didik per Rombel - SMP
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC26" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC26" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C27" />
+            <strong>C27</strong> - Rasio Peserta Didik per Rombel - SMA
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC27" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC27" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C28" />
+            <strong>C28</strong> - Rasio Peserta Didik per Rombel - SMK
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC28" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC28" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C29" />
+            <strong>C29</strong> - Rasio Rombel per Kelas - SD
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC29" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC29" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C30" />
+            <strong>C30</strong> - Rasio Rombel per Kelas - SMP
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC30" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC30" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C31" />
+            <strong>C31</strong> - Rasio Rombel per Kelas - SMA
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC31" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC31" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C32" />
+            <strong>C32</strong> - Rasio Rombel per Kelas - SMK
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC32" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC32" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C33" />
+            <strong>C33</strong> - Rasio Murid Guru - SD
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC33" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC33" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C34" />
+            <strong>C34</strong> - Rasio Murid-Guru - SMP
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC34" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC34" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C35" />
+            <strong>C35</strong> - Rasio Murid-Guru - SMA
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC35" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC35" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C36" />
+            <strong>C36</strong> - Rasio Murid-Guru - SMK
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC36" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC36" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C37" />
+            <strong>C37</strong> - Persentase Kecukupan Air (SD) - Cukup
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC37" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC37" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C38" />
+            <strong>C38</strong> - Persentase Kecukupan Air (SD) - Kurang
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC38" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC38" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C39" />
+            <strong>C39</strong> - Persentase Kecukupan Air (SD) - Tidak Ada
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC39" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC39" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C40" />
+            <strong>C40</strong> - Persentase Kecukupan Air (SMP) - Cukup
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC40" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC40" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C41" />
+            <strong>C41</strong> - Persentase Kecukupan Air (SMP) - Kurang
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC41" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC41" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C42" />
+            <strong>C42</strong> - Persentase Kecukupan Air (SMP) - Tidak Ada
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC42" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC42" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C43" />
+            <strong>C43</strong> - Persentase Kecukupan Air (SMA) - Cukup
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC43" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC43" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C44" />
+            <strong>C44</strong> - Persentase Kecukupan Air (SMA) - Kurang
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC44" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC44" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C45" />
+            <strong>C45</strong> - Persentase Kecukupan Air (SMA) - Tidak Ada
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC45" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC45" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C46" />
+            <strong>C46</strong> - Persentase Kecukupan Air (SMK) - Cukup
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC46" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC46" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C47" />
+            <strong>C47</strong> - Persentase Kecukupan Air (SMK) - Kurang
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC47" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC47" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C48" />
+            <strong>C48</strong> - Persentase Kecukupan Air (SMK) - Tidak Ada
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC48" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC48" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C49" />
+            <strong>C49</strong> - Persentase Ketersediaan Toilet Siswa (SD) - Terpisah
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC49" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC49" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C50" />
+            <strong>C50</strong> - Persentase Ketersediaan Toilet Siswa (SD) - Bersama
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC50" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC50" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C51" />
+            <strong>C51</strong> - Persentase Ketersediaan Toilet Siswa (SD) - Tidak Memiliki
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC51" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC51" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C52" />
+            <strong>C52</strong> - Persentase Ketersediaan Toilet Siswa (SMP) - Terpisah
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC52" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC52" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C53" />
+            <strong>C53</strong> - Persentase Ketersediaan Toilet Siswa (SMP) - Bersama
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC53" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC53" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C54" />
+            <strong>C54</strong> - Persentase Ketersediaan Toilet Siswa (SMP) - Tidak Memiliki
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC54" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC54" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C55" />
+            <strong>C55</strong> - Persentase Ketersediaan Toilet Siswa (SMA) - Terpisah
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC55" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC55" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C56" />
+            <strong>C56</strong> - Persentase Ketersediaan Toilet Siswa (SMA) - Bersama
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC56" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC56" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C57" />
+            <strong>C57</strong> - Persentase Ketersediaan Toilet Siswa (SMA) - Tidak Memiliki
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC57" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC57" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C58" />
+            <strong>C58</strong> - Persentase Ketersediaan Toilet Siswa (SMK) - Terpisah
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC58" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC58" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C59" />
+            <strong>C59</strong> - Persentase Ketersediaan Toilet Siswa (SMK) - Bersama
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC59" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC59" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+        <div class="kriteria-row">
+          <label class="kriteria-label">
+            <input type="checkbox" name="kriteria" value="C60" />
+            <strong>C60</strong> - Persentase Ketersediaan Toilet Siswa (SMK) - Tidak Memiliki
+          </label>
+          <span>Tipe:</span>
+          <select name="tipeC60" class="kriteria-select">
+            <option value="benefit">Benefit</option>
+            <option value="cost">Cost</option>
+            <option value="match">Match</option>
+          </select>
+          <span>Bobot [0-100]:</span>
+          <input type="number" name="bobotC60" class="kriteria-bobot" step="1" min="0" max="100" value="0" oninput="validateWeight(this)" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="selectedKriteriaDisplay" class="selected-kriteria-box">
+    <h3>Kriteria Terpilih</h3>
+    <table id="selectedKriteriaTable">
+      <thead>
+        <tr>
+          <th>Kode</th>
+          <th>Kriteria</th>
+          <th>Tipe</th>
+          <th>Bobot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Will be populated by JavaScript -->
+      </tbody>
+    </table>
   </div>
 
   <div class="total-bobot">
@@ -855,13 +1040,17 @@
 
   <div class="button-group">
     <button onclick="runTOPSIS()">Hitung TOPSIS</button>
-    <button onclick="downloadResults()" id="downloadBtn" disabled>Unduh Hasil</button>
+    <button onclick="downloadResults()" id="downloadBtn" disabled>Unduh Hasil (.pdf)</button>
+    <button onclick="downloadXLSX()" id="downloadXLSXBtn" disabled>Unduh Hasil (.xlsx)</button>
   </div>
 
   <div id="resultArea"></div>
 
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

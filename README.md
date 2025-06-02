@@ -67,7 +67,9 @@ This system assists in decision-making to determine provincial priorities in edu
    - Province name
    - Preference score
 
-6. Click "Download Results" button to save results in PNG format
+6. Download options:
+   - Click "Download Results (.pdf)" to save results in PDF format
+   - Click "Download Results (.xlsx)" to save results in Excel format
 
 ## Important Notes
 
@@ -85,8 +87,10 @@ This system assists in decision-making to determine provincial priorities in edu
 - HTML5
 - CSS3
 - JavaScript
-- SheetJS (for reading Excel files)
-- html2canvas (for downloading results)
+- SheetJS (for reading Excel files and generating XLSX)
+- jsPDF (for generating PDF files)
+- Chart.js (for generating charts)
+- html2canvas (for chart rendering)
 
 ## License
 
