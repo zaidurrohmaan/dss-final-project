@@ -844,8 +844,9 @@
     Total Bobot: <span id="totalBobot">0</span>%
   </div>
 
+  <div id="warningMsg" class="warning-msg"></div>
   <div class="button-group">
-    <button onclick="runTOPSIS()">Hitung TOPSIS</button>
+    <button onclick="runTOPSIS()" id="hitungTOPSISBtn">Hitung TOPSIS</button>
     <button onclick="downloadResults()" id="downloadBtn" disabled>Unduh Hasil (.pdf)</button>
     <button onclick="downloadXLSX()" id="downloadXLSXBtn" disabled>Unduh Hasil (.xlsx)</button>
   </div>
@@ -857,6 +858,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=1.1"></script>
 </body>
 </html>

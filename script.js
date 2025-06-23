@@ -96,6 +96,7 @@ const kriteriaConfig = {
 
 // Global variable to store the dataset
 let dataset = null;
+let fullRanking = null;
 
 // Load Excel file
 async function loadDataset() {
@@ -174,11 +175,10 @@ document.getElementById("jenjangPendidikan").addEventListener("change", function
     const daftarKriteria = document.getElementById("kriteriaWrapper");
     if (analisis === "00") {
       jenjang.style.display = "none";
-      daftarKriteria.style.display = "block";
     } else {
       jenjang.style.display = "block";
-      daftarKriteria.style.display = "none";
     }
+    daftarKriteria.style.display = "block";
   }
   
 // Function to get criteria label from checkbox label
@@ -229,7 +229,7 @@ function updateControlsState(checkbox) {
     
     // Reset values if unchecked
     if (!checkbox.checked) {
-      bobot.value = "1"; // Set to 1 instead of 0 for custom analysis
+      bobot.value = "0"; // Set to 0 instead of 1 for custom analysis
       tipe.value = "benefit";
     }
   } else {
@@ -242,29 +242,17 @@ function updateControlsState(checkbox) {
 // Function to validate weight input
 function validateWeight(input) {
   let value = parseInt(input.value, 10);
-  const analisis = document.getElementById("analisis").value;
-  const isCustom = analisis === "00";
-  
-  // If input is empty or not a number, set to minimum value
+
+  // If input is empty or not a number, set to 0
   if (isNaN(value)) {
-    value = isCustom ? 1 : 0;
+    value = 0;
   }
-  
-  // Enforce range based on analysis type
-  if (isCustom) {
-    // For custom analysis: range 1-100
-    if (value < 1) {
-      value = 1;
-    } else if (value > 100) {
-      value = 100;
-    }
-  } else {
-    // For predefined analysis: range 0-100
-    if (value < 0) {
-      value = 0;
-    } else if (value > 100) {
-      value = 100;
-    }
+
+  // Enforce range 0-100 for all analysis types
+  if (value < 0) {
+    value = 0;
+  } else if (value > 100) {
+    value = 100;
   }
   
   // Update input value
@@ -309,6 +297,36 @@ function validateBobot() {
   return true;
 }
 
+// Validate and update TOPSIS button and warning message
+function validateTOPSISButtonAndWarning() {
+  const selectedKriteria = getSelectedKriteria();
+  const totalBobot = selectedKriteria.reduce((sum, k) => sum + k.bobot, 0);
+  const hasZeroWeight = selectedKriteria.some(k => k.bobot === 0);
+  const warningMsg = document.getElementById('warningMsg');
+  const hitungBtn = document.getElementById('hitungTOPSISBtn');
+
+  if (selectedKriteria.length === 0) {
+    warningMsg.innerHTML = '';
+    hitungBtn.disabled = true;
+    return;
+  }
+
+  if (hasZeroWeight) {
+    warningMsg.innerHTML = '<span class="warning-icon" aria-label="Warning">&#9888;</span> Bobot setiap kriteria terpilih minimal 1.';
+    hitungBtn.disabled = true;
+    return;
+  }
+
+  if (totalBobot !== 100) {
+    warningMsg.innerHTML = '<span class="warning-icon" aria-label="Warning">&#9888;</span> Total bobot harus 100.';
+    hitungBtn.disabled = true;
+    return;
+  }
+
+  warningMsg.innerHTML = '';
+  hitungBtn.disabled = false;
+}
+
 // Update criteria form based on analysis type and education level
   function updateKriteriaForm(analisis) {
     const form = document.getElementById("formKriteria");
@@ -319,6 +337,7 @@ function validateBobot() {
   const allCheckboxes = form.querySelectorAll('input[name="kriteria"]');
   const allBobots = form.querySelectorAll('[name^="bobot"]');
   const allTipes = form.querySelectorAll('[name^="tipe"]');
+  const allRows = form.querySelectorAll('.kriteria-row');
 
   // Reset and disable all controls first
   allCheckboxes.forEach(cb => {
@@ -327,7 +346,7 @@ function validateBobot() {
   });
   
   allBobots.forEach(bobot => {
-    bobot.value = isCustom ? "1" : "0"; // Set to 1 for custom analysis
+    bobot.value = "0"; // Set initial weight to 0 for all cases
     bobot.disabled = true;
   });
   
@@ -336,37 +355,51 @@ function validateBobot() {
     tipe.disabled = true;
   });
 
+  // Tampilkan/sembunyikan baris kriteria sesuai mode
   if (isCustom) {
-    // Custom mode - just reset the form
+    allRows.forEach(row => row.style.display = "flex");
+    // For custom mode, enable controls for checked items
+    allCheckboxes.forEach(cb => {
+        if(cb.checked) {
+            updateControlsState(cb);
+        }
+    });
     updateTotalBobot();
     updateSelectedKriteriaDisplay();
+    validateTOPSISButtonAndWarning();
     return;
   }
 
   // Apply configuration based on analysis type and education level
   const config = kriteriaConfig[analisis][jenjang];
+  // Sembunyikan semua baris dulu
+  allRows.forEach(row => row.style.display = "none");
   for (const [id, settings] of Object.entries(config)) {
       const checkbox = form.querySelector(`input[name="kriteria"][value="${id}"]`);
       const bobot = form.querySelector(`[name="bobot${id}"]`);
       const tipe = form.querySelector(`[name="tipe${id}"]`);
+      const row = checkbox ? checkbox.closest('.kriteria-row') : null;
   
     if (checkbox) {
+      if (row) row.style.display = "flex";
       checkbox.checked = settings.checked;
-        checkbox.disabled = true;
+      checkbox.disabled = true; // Lock the checkbox
       if (bobot) {
         // Convert decimal weight to percentage
         bobot.value = Math.round(settings.bobot * 100);
-        bobot.disabled = true;
+        // Enable weight input only if the criterion is selected
+        bobot.disabled = !settings.checked;
       }
       if (tipe) {
         tipe.value = settings.tipe;
-        tipe.disabled = true;
+        tipe.disabled = true; // Lock the type selector
       }
     }
   }
   
   updateTotalBobot();
   updateSelectedKriteriaDisplay();
+  validateTOPSISButtonAndWarning();
 }
 
 // Run TOPSIS calculation
@@ -376,14 +409,21 @@ function runTOPSIS() {
     return;
   }
 
-  // Validate total bobot only when TOPSIS button is clicked
-  if (!validateBobot()) {
-    return;
-  }
-
   const selectedKriteria = getSelectedKriteria();
   if (selectedKriteria.length === 0) {
     alert("Pilih minimal satu kriteria");
+    return;
+  }
+
+  // Check if any selected criteria has a weight of 0
+  const hasZeroWeight = selectedKriteria.some(k => k.bobot === 0);
+  if (hasZeroWeight) {
+    alert("bobot setiap kriteria terpilih minimal 1");
+    return;
+  }
+
+  // Validate total bobot only when TOPSIS button is clicked
+  if (!validateBobot()) {
     return;
   }
 
@@ -453,6 +493,9 @@ function runTOPSIS() {
   }));
       ranking.sort((a, b) => b.score - a.score);
 
+  // Store the full ranking globally for download functions
+  fullRanking = ranking;
+
   // Display results
   const resultArea = document.getElementById("resultArea");
   let resultHtml = `
@@ -466,7 +509,7 @@ function runTOPSIS() {
       </tr>
   `;
 
-  ranking.forEach((r, index) => {
+  fullRanking.slice(0, 5).forEach((r, index) => {
     resultHtml += `
       <tr>
         <td>${index + 1}</td>
@@ -479,27 +522,33 @@ function runTOPSIS() {
 
   resultHtml += `
     </table>
+    <p><i>Catatan: Hasil ranking keseluruhan untuk semua provinsi dapat dilihat pada file PDF atau XLSX yang diunduh.</i></p>
     <div style="margin-top: 30px;">
-      <h3>Grafik Ranking Provinsi</h3>
-      <div style="height: 800px; width: 100%; position: relative; display: flex; justify-content: center;">
+      <h3>Grafik Ranking Provinsi (Top 5)</h3>
+      <div style="height: 400px; width: 100%; position: relative; display: flex; justify-content: center;">
         <div style="width: 80%; position: relative; padding-left: 200px;">
           <canvas id="rankingChart"></canvas>
         </div>
       </div>
     </div>
+    <div style="display: none;">
+      <canvas id="fullRankingChartForPDF" width="1600" height="1200"></canvas>
+    </div>
   `;
   
   resultArea.innerHTML = resultHtml;
 
-  // Create bar chart
+  // Create bar chart for top 5 display
+  const top5Ranking = fullRanking.slice(0, 5);
   const ctx = document.getElementById('rankingChart').getContext('2d');
+  const minTop5 = Math.min(...top5Ranking.map(r => r.score));
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ranking.map(r => r.name),
+      labels: top5Ranking.map(r => r.name),
       datasets: [{
         label: 'Skor Preferensi',
-        data: ranking.map(r => r.score),
+        data: top5Ranking.map(r => r.score),
         backgroundColor: 'rgba(41, 128, 185, 0.7)',
         borderColor: 'rgba(41, 128, 185, 1)',
         borderWidth: 1
@@ -523,7 +572,7 @@ function runTOPSIS() {
         },
         title: {
           display: true,
-          text: 'Skor Preferensi per Provinsi',
+          text: 'Skor Preferensi per Provinsi (Top 5)',
           font: {
             size: 14,
             weight: 'bold'
@@ -541,6 +590,7 @@ function runTOPSIS() {
       },
       scales: {
         x: {
+          min: minTop5,
           title: {
             display: true,
             text: 'Skor Preferensi',
@@ -572,6 +622,103 @@ function runTOPSIS() {
           ticks: {
             font: {
               size: 11
+            },
+            padding: 5,
+            align: 'end',
+            mirror: false
+          },
+          grid: {
+            display: false
+          },
+          position: 'left'
+        }
+      }
+    }
+  });
+
+  // Create full bar chart for PDF download (on hidden canvas)
+  const fullCtx = document.getElementById('fullRankingChartForPDF').getContext('2d');
+  const minFull = Math.min(...fullRanking.map(r => r.score));
+  new Chart(fullCtx, {
+    type: 'bar',
+    data: {
+      labels: fullRanking.map(r => r.name),
+      datasets: [{
+        label: 'Skor Preferensi',
+        data: fullRanking.map(r => r.score),
+        backgroundColor: 'rgba(41, 128, 185, 0.7)',
+        borderColor: 'rgba(41, 128, 185, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: false, // Important for hidden canvas rendering
+      animation: {
+        duration: 0 // No animation for faster rendering
+      },
+      indexAxis: 'y',
+      layout: {
+        padding: {
+          left: 200,
+          right: 40,
+          top: 40,
+          bottom: 40
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'Skor Preferensi per Provinsi',
+          font: {
+            size: 24,
+            weight: 'bold'
+          },
+          padding: {
+            bottom: 30
+          },
+          align: 'center'
+        },
+        tooltip: {
+          enabled: false
+        }
+      },
+      scales: {
+        x: {
+          min: minFull,
+          title: {
+            display: true,
+            text: 'Skor Preferensi',
+            font: {
+              size: 18,
+              weight: 'bold'
+            },
+            align: 'center'
+          },
+          ticks: {
+            font: {
+              size: 14
+            }
+          },
+          grid: {
+            display: true,
+            drawBorder: true
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Provinsi',
+            font: {
+              size: 18,
+              weight: 'bold'
+            }
+          },
+          ticks: {
+            font: {
+              size: 14
             },
             padding: 5,
             align: 'end',
@@ -661,22 +808,13 @@ function downloadResults() {
     }
 
     // Add ranking table
-    const rankingTable = resultArea.querySelector('table');
-    if (rankingTable) {
-      const rankingData = [];
-      const rows = rankingTable.querySelectorAll('tbody tr');
-      
-      rows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        if (cells.length >= 4) {
-          rankingData.push([
-            cells[0].textContent.trim(), // Ranking
-            cells[1].textContent.trim(), // No.
-            cells[2].textContent.trim(), // Provinsi
-            cells[3].textContent.trim()  // Skor
-          ]);
-        }
-      });
+    if (fullRanking && fullRanking.length > 0) {
+      const rankingData = fullRanking.map((r, index) => [
+        String(index + 1),
+        String(r.id),
+        r.name,
+        r.score.toFixed(4)
+      ]);
 
       if (rankingData.length > 0) {
         // Get the Y position after the criteria table
@@ -701,7 +839,7 @@ function downloadResults() {
         });
 
         // Add chart
-        const chartCanvas = document.getElementById('rankingChart');
+        const chartCanvas = document.getElementById('fullRankingChartForPDF');
         if (chartCanvas) {
           // Get the actual dimensions of the chart canvas
           const canvasWidth = chartCanvas.width;
@@ -774,33 +912,21 @@ function downloadXLSX() {
     const analisisText = analisis.options[analisis.selectedIndex].text;
     const jenjangText = analisis.value === "00" ? "-" : jenjang.value;
 
-    // Get ranking data
-    const rankingTable = resultArea.querySelector('table');
-    if (!rankingTable) {
-      throw new Error("Tabel ranking tidak ditemukan");
+    // Get ranking data from global variable
+    if (!fullRanking || fullRanking.length === 0) {
+      alert("Tidak ada data ranking untuk diunduh.");
+      return;
     }
 
-    const rankingData = [];
-    const rows = rankingTable.querySelectorAll('tbody tr');
-    
-    // Add headers
-    rankingData.push(['Ranking', 'No.', 'Provinsi', 'Skor Preferensi']);
-    
-    // Add data rows
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      if (cells.length >= 4) {
-        rankingData.push([
-          cells[0].textContent.trim(), // Ranking
-          cells[1].textContent.trim(), // No.
-          cells[2].textContent.trim(), // Provinsi
-          cells[3].textContent.trim()  // Skor
-        ]);
-      }
-    });
+    const rankingData = fullRanking.map((r, index) => ({
+      'Ranking': index + 1,
+      'No.': r.id,
+      'Provinsi': r.name,
+      'Skor Preferensi': r.score.toFixed(4)
+    }));
 
     // Create worksheet
-    const ws = XLSX.utils.aoa_to_sheet(rankingData);
+    const ws = XLSX.utils.json_to_sheet(rankingData);
 
     // Set column widths
     const wscols = [
@@ -847,6 +973,7 @@ document.addEventListener("DOMContentLoaded", function() {
       updateControlsState(checkbox);
       updateTotalBobot();
       updateSelectedKriteriaDisplay();
+      validateTOPSISButtonAndWarning();
     });
   });
 
@@ -855,6 +982,7 @@ document.addEventListener("DOMContentLoaded", function() {
     input.addEventListener("input", () => {
       updateTotalBobot();
       updateSelectedKriteriaDisplay();
+      validateTOPSISButtonAndWarning();
     });
   });
 
@@ -862,11 +990,13 @@ document.addEventListener("DOMContentLoaded", function() {
   tipeSelects.forEach(select => {
     select.addEventListener("change", () => {
       updateSelectedKriteriaDisplay();
+      validateTOPSISButtonAndWarning();
     });
   });
 
   // Initial form update
   document.getElementById("analisis").dispatchEvent(new Event("change"));
+  validateTOPSISButtonAndWarning();
 });
 
 // Function to populate analysis type select element

@@ -151,4 +151,25 @@ button:disabled {
 
 #kriteriaWrapper.hidden {
   display: none;
+}
+
+.warning-msg {
+  color: #b26a00;
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin: 16px 0 8px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  gap: 8px;
+}
+
+.warning-icon {
+  color: #ff9800;
+  font-size: 1.3em;
+  margin-right: 8px;
+  flex-shrink: 0;
 } 
